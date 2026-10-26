@@ -51,7 +51,11 @@ python manage.py load_radio_stations
 
 `fetch.py` loads `backend/model/music_classifier_model.h5`. That file is kept in the private repository [fairplay-music-classifier](https://github.com/TouihriMedAmine/fairplay-music-classifier). Clone it and copy `music_classifier_model.h5` into `backend/model/`. The public tree does not contain the weights.
 
-`MusicRecognition/Notebooks/music-detection-with-rnn.ipynb` is the BiLSTM that uses 40 MFCCs, 5 seconds, and pad length 130, which is the feature shape `fetch.py` expects. It was trained at 22,050 Hz. The dataset paths in the notebook are empty. Its saved output prints test accuracy **1.00** (0.9967 on 23,758 clips). That fit passes the test split as `validation_data`, and the split is a random cut of clips, so clips from the same recording can sit on both sides. Treat 1.00 as a training log, not as a held-out result.
+`MusicRecognition/Notebooks/music-detection-with-rnn.ipynb` is the BiLSTM that uses 40 MFCCs, 5 seconds, and pad length 130. It was trained at 22,050 Hz. `fetch.py` uses the same MFCC shape at 16,000 Hz, so this notebook is not a measurement of the live detector.
+
+The fit prints **Test Accuracy: 1.00** (0.9967 on 23,758 clips). That `X_test` is a random 20% of the training Kaggle dataset, and it is passed as `validation_data` on every epoch. Treat 1.00 as a training log.
+
+A later cell runs `test_model_on_folder("/kaggle/input/testdata/TestData")`, a second Kaggle dataset. The saved log has 100 files under `Music` and 100 under `NonMusic`. Counting the printed lines gives 99 Music predictions in the Music folder and 100 NonMusic predictions in the NonMusic folder: **199 of 200**. The miss is `music_41.mp3`. The cell does not print that fraction. The two Kaggle dataset ids are different; the notebook does not compare filenames across them.
 
 `MusicRecognition/Essentials/` has the clip tools that remain: `trim.py`, `cleaningFiles.py`, `corrupted_files.py`, and `download.py`. Their folder paths are blank. `MusicRecognition/Data/links.txt` is the source list used while building the set. The audio itself is not in this tree. `generate.ipynb` draws the loaded network and reads `../backend/model/music_classifier_model.h5`.
 
