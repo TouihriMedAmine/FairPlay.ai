@@ -1,0 +1,1 @@
+Django djangorestframework django-cors-headers rest_framework_simplejwt djangorestframework-simplejwt tensorflow sklearn matplotlib numpy

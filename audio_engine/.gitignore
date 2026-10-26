@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.env
+
+# Test / tooling caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Databases
+*.db
+*.db-wal
+*.db-shm
+
+# Datasets & generated audio (do not commit copyrighted media)
+Dataset/
+Test/
+*.mp3
+*.wav
+*.flac
+*.ogg
+*.m4a
+*.opus
+*.zip
+
+# Results
+clip_test_results.txt
+global_clip_test_results.txt

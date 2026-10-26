@@ -1,0 +1,120 @@
+/* Global autofill styling fix - Ultra strong selectors */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+input:-webkit-autofill:valid {
+    -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+    -webkit-text-fill-color: inherit !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    color: inherit !important;
+    border-radius: 4px !important;
+    transition: background-color 50000s ease-in-out 0s, -webkit-box-shadow 50000s ease-in-out 0s !important;
+    caret-color: inherit !important;
+}
+
+/* For Material-UI inputs specifically - Maximum specificity */
+.MuiOutlinedInput-root .MuiOutlinedInput-input:-webkit-autofill,
+.MuiOutlinedInput-root .MuiOutlinedInput-input:-webkit-autofill:hover,
+.MuiOutlinedInput-root .MuiOutlinedInput-input:-webkit-autofill:focus,
+.MuiOutlinedInput-root .MuiOutlinedInput-input:-webkit-autofill:active,
+.MuiOutlinedInput-root .MuiOutlinedInput-input:-webkit-autofill:valid {
+    -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+    -webkit-text-fill-color: inherit !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    color: inherit !important;
+    transition: background-color 50000s ease-in-out 0s, -webkit-box-shadow 50000s ease-in-out 0s !important;
+    caret-color: inherit !important;
+}
+
+/* Extra aggressive overrides for stubborn browsers */
+.MuiTextField-root .MuiOutlinedInput-root .MuiOutlinedInput-input:-webkit-autofill,
+.MuiTextField-root .MuiOutlinedInput-root .MuiOutlinedInput-input:-webkit-autofill:hover,
+.MuiTextField-root .MuiOutlinedInput-root .MuiOutlinedInput-input:-webkit-autofill:focus,
+.MuiTextField-root .MuiOutlinedInput-root .MuiOutlinedInput-input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+    box-shadow: 0 0 0 1000px transparent inset !important;
+    -webkit-text-fill-color: inherit !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    background: transparent !important;
+    color: inherit !important;
+    transition: background-color 50000s ease-in-out 0s, box-shadow 50000s ease-in-out 0s, -webkit-box-shadow 50000s ease-in-out 0s !important;
+}
+
+/* Additional fallback selectors */
+input[data-webkit-autofilled],
+.MuiOutlinedInput-input[data-webkit-autofilled] {
+    background-color: transparent !important;
+    background-image: none !important;
+    background: transparent !important;
+    color: inherit !important;
+    -webkit-text-fill-color: inherit !important;
+    -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+    box-shadow: 0 0 0 1000px transparent inset !important;
+}
+
+/* Force override for any remaining cases */
+input:-internal-autofill-selected,
+input:-internal-autofill-previewed {
+    background-color: transparent !important;
+    background-image: none !important;
+    background: transparent !important;
+    color: inherit !important;
+    -webkit-text-fill-color: inherit !important;
+    -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+    box-shadow: 0 0 0 1000px transparent inset !important;
+}
+
+/* Ensure the same styling for all input states - do not force color; let theme decide */
+.MuiOutlinedInput-root input {
+    color: inherit !important;
+    -webkit-text-fill-color: inherit !important;
+    background: transparent !important;
+}
+
+/* Final nuclear option - target any remaining autofill states */
+input:-webkit-autofill-strong-password,
+input:-webkit-autofill-strong-password-viewable {
+    -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+    -webkit-text-fill-color: white !important;
+    background-color: transparent !important;
+    background: transparent !important;
+    color: white !important;
+}
+
+/* Ultimate override - using CSS custom properties and animations */
+@keyframes autofill-fix {
+    to {
+        background: transparent;
+        color: white;
+    }
+}
+
+/* Apply animation to override autofill */
+input:-webkit-autofill {
+    animation-name: autofill-fix;
+    animation-fill-mode: both;
+    animation-duration: 1ms;
+}
+
+/* Specific override for form inputs with glassmorphism background */
+form input:-webkit-autofill,
+form input:-webkit-autofill:hover,
+form input:-webkit-autofill:focus,
+form input:-webkit-autofill:active {
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    background: transparent !important;
+    -webkit-text-fill-color: inherit !important;
+    color: inherit !important;
+    transition: background-color 0ms ease 0s, color 0ms ease 0s !important;
+}
+
+.MuiOutlinedInput-root input:-webkit-autofill ~ .MuiOutlinedInput-notchedOutline {
+    border-color: inherit !important;
+}

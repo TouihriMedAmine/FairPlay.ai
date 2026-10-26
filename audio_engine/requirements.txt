@@ -1,0 +1,16 @@
+# Same pins as the repository root requirements.txt.
+# Installing this file inside the project virtualenv will not upgrade NumPy past TensorFlow 2.16.
+numpy==1.26.4
+scipy==1.13.1
+numba==0.60.0
+llvmlite==0.43.0
+scikit-learn==1.5.2
+librosa==0.10.2
+soundfile==0.12.1
+fastapi==0.115.12
+uvicorn==0.32.1
+python-multipart==0.0.20
+httpx==0.27.2
+pytest==8.3.5
+python-dotenv==1.0.1
+requests==2.31.0

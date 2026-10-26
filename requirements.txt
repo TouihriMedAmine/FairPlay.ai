@@ -1,0 +1,36 @@
+# Django API and production settings (backend/config/settings_production.py)
+Django==5.0.3
+djangorestframework==3.14.0
+django-cors-headers==4.3.1
+djangorestframework-simplejwt==5.3.0
+gunicorn==21.2.0
+whitenoise==6.6.0
+python-decouple==3.8
+dj-database-url==2.1.0
+psycopg2-binary==2.9.9
+
+# Live detector (fetch.py).
+# numpy is pinned below 2 because TensorFlow 2.16 has no NumPy 2 wheels.
+numpy==1.26.4
+scipy==1.13.1
+numba==0.60.0
+llvmlite==0.43.0
+scikit-learn==1.5.2
+librosa==0.10.2
+soundfile==0.12.1
+tensorflow==2.16.1
+tensorflow-hub==0.16.1
+pydub==0.25.1
+requests==2.31.0
+python-dotenv==1.0.1
+yt-dlp==2026.10.21
+
+# Fingerprint service (audio_engine/) and its tests
+fastapi==0.115.12
+uvicorn==0.32.1
+python-multipart==0.0.20
+httpx==0.27.2
+pytest==8.3.5
+
+# Dataset collection script (MusicRecognition/radio scrapping.py)
+beautifulsoup4==4.12.3
