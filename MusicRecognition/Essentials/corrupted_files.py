@@ -55,5 +55,5 @@ def check_all_audio_files(folder):
             check_audio_file(file_path, silent_folder)
 
 if __name__ == "__main__":
-    folder_path = "Data/DataSet/Music"  # 🔁 Replace with your input folder
+    folder_path = ""  # 🔁 Replace with your input folder
     check_all_audio_files(folder_path)

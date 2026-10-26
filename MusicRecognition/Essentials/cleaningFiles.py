@@ -29,14 +29,8 @@ def delete_files_in_folder(source_folder, target_folder):
             print(f"{source_file_path} does not exist in {target_folder}")
 
 # Example usage:
-source_folder1 = "dataset2/test/music"
-source_folder2 = "dataset2/validation/music"
-source_folder3 = "dataset2/test/non_music"
-source_folder4 = "dataset2/validation/non_music"
-music_target_folder = "dataset1/music"
-non_music_target_folder ="dataset1/non_music"
+source_folder1 = "dataset/test/music"
+music_target_folder = "dataset/music"
+non_music_target_folder ="dataset/non_music"
 
 delete_files_in_folder(source_folder1, music_target_folder)
-delete_files_in_folder(source_folder2,music_target_folder)
-delete_files_in_folder(source_folder3,non_music_target_folder)
-delete_files_in_folder(source_folder4,non_music_target_folder)

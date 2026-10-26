@@ -51,14 +51,9 @@ python manage.py load_radio_stations
 
 `fetch.py` loads `backend/model/music_classifier_model.h5`. That file is kept in the private repository [fairplay-music-classifier](https://github.com/TouihriMedAmine/fairplay-music-classifier). Clone it and copy `music_classifier_model.h5` into `backend/model/`. The public tree does not contain the weights.
 
-The training notebooks are under `MusicRecognition/Notebooks/` and `MusicRecognition/Models training/`. They compare dense networks, a mel-spectrogram ConvNet, a BiLSTM, random forests, a decision tree, and an SVM. Preparation scripts (`MusicTrim.py`, `nonMusicTrim.py`, `cleaningFiles.py`, `corrupted_files.py`) cut and clean clips. The audio those notebooks read (`dataset1`, `dataset2`, Kaggle paths) is not in this tree. `MusicRecognition/Data/links.txt` is the source list used while building that set.
+`MusicRecognition/Notebooks/music-detection-with-rnn.ipynb` is the BiLSTM that uses 40 MFCCs, 5 seconds, and pad length 130, which is the feature shape `fetch.py` expects. It was trained at 22,050 Hz. The dataset paths in the notebook are empty. Its saved output prints test accuracy **1.00** (0.9967 on 23,758 clips). That fit passes the test split as `validation_data`, and the split is a random cut of clips, so clips from the same recording can sit on both sides. Treat 1.00 as a training log, not as a held-out result.
 
-Two saved notebook outputs are worth reading, and they measure different models:
-
-- `MusicRecognition/Notebooks/CNN_with_mfccs 200k.ipynb` prints **accuracy 0.9564** on a separate test folder: 5,000 music and 5,000 non-music, decision threshold **0.9**. The network is a stack of Dense layers on flattened 20 MFCCs. The filename says CNN; the model is not a convolution.
-- `MusicRecognition/Notebooks/music-detection-with-rnn.ipynb` is the BiLSTM that uses 40 MFCCs, 5 seconds, and pad length 130, which is the feature shape `fetch.py` expects. It was trained at **22,050 Hz**. Its printed test accuracy is **1.00** (0.9967 on 23,758 clips). That fit passes the test split as `validation_data`, and the split is a random cut of clips, so clips from the same recording can sit on both sides. Treat 1.00 as a training log, not as a held-out result.
-
-Checkpoint filenames such as `CNNmodelForMp3_99%.h5` are experiment labels. They are gitignored. The live script does not load them.
+`MusicRecognition/Essentials/` has the clip tools that remain: `trim.py`, `cleaningFiles.py`, `corrupted_files.py`, and `download.py`. Their folder paths are blank. `MusicRecognition/Data/links.txt` is the source list used while building the set. The audio itself is not in this tree. `generate.ipynb` draws the loaded network and reads `../backend/model/music_classifier_model.h5`.
 
 ## Fingerprint engine
 
@@ -204,7 +199,6 @@ backend/core/                     models, API, load_radio_stations
 backend/model/                    put music_classifier_model.h5 here; the file is gitignored
 src/                              React pages
 audio_engine/                     fingerprint library, API, tests
-MusicRecognition/Notebooks/       feature and model experiments
-MusicRecognition/Models training/ further experiments
-MusicRecognition/Essentials/      trim and clean scripts
+MusicRecognition/Notebooks/       BiLSTM music/non-music notebook
+MusicRecognition/Essentials/      trim, clean, and download scripts
 ```

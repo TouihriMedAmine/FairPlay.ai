@@ -191,19 +191,19 @@ class ModelManager:
     
     def load_music_model(self):
         model_path = os.getenv('MODEL_PATH', './backend/model/music_classifier_model.h5')
-        fallback_path = "D:/Projects/FairPlay .ai/Models/music_classifier_model.h5"
-        
-        for path in [model_path, fallback_path]:
-            if os.path.exists(path):
-                try:
-                    logger.info(f"Loading music classifier from {path}")
-                    self.music_model = load_model(path, compile=False)
-                    logger.info("Music classifier loaded successfully")
-                    return self.music_model
-                except Exception as e:
-                    logger.error(f"Failed to load model from {path}: {e}")
-        
-        raise FileNotFoundError("Music classifier model not found")
+        if not os.path.exists(model_path):
+            raise FileNotFoundError(
+                f"Music classifier not found at {model_path}. "
+                "Set MODEL_PATH or copy music_classifier_model.h5 into backend/model/."
+            )
+        try:
+            logger.info(f"Loading music classifier from {model_path}")
+            self.music_model = load_model(model_path, compile=False)
+            logger.info("Music classifier loaded successfully")
+            return self.music_model
+        except Exception as e:
+            logger.error(f"Failed to load model from {model_path}: {e}")
+            raise
     
     def load_yamnet_model(self):
         if self.yamnet_model is None:

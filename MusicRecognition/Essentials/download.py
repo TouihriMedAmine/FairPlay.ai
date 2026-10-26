@@ -5,8 +5,8 @@ import os
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # File containing the list of URLs (in the same folder as the script)
-URLS_FILE = os.path.join(SCRIPT_DIR, 'rebirth_podcast.txt')
-urls=["https://www.youtube.com/watch?v=LDU_Txk06tM&list=RDLDU_Txk06tM&start_radio=1"]
+URLS_FILE = os.path.join(SCRIPT_DIR, 'urls.txt')  # Ensure this file exists in the same directory as the script
+
 
 # Clean URLs
 def clean_url(url):
@@ -24,9 +24,9 @@ ydl_opts = {
     }],
 }
 
-# # Read and clean URLs
-# with open(URLS_FILE, 'r') as file:
-#     urls = file.readlines()
+# Read and clean URLs
+with open(URLS_FILE, 'r') as file:
+    urls = file.readlines()
 
 # Download loop
 for link in urls:

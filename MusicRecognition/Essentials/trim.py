@@ -63,7 +63,7 @@ def process_all_files(input_folder, output_folder):
             audio_number=trim_and_convert_audio(audio_number, input_file_path, output_folder)
 
 if __name__ == "__main__":
-    input_folder = "C:/Users/Amine/Desktop/idk/dataset preparation"  # Change this to your input audio file
-    output_folder = "dataset1/non_music"  # Change this to your desired output file prefix
+    input_folder = ""  # Change this to your input audio file
+    output_folder = ""  # Change this to your desired output file prefix
 
     process_all_files(input_folder, output_folder)
