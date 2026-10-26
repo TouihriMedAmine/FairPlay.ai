@@ -55,7 +55,14 @@ python manage.py load_radio_stations
 
 The fit prints **Test Accuracy: 1.00** (0.9967 on 23,758 clips). That `X_test` is a random 20% of the training Kaggle dataset, and it is passed as `validation_data` on every epoch. Treat 1.00 as a training log.
 
-A later cell runs `test_model_on_folder("/kaggle/input/testdata/TestData")`, a second Kaggle dataset. The saved log has 100 files under `Music` and 100 under `NonMusic`. Counting the printed lines gives 99 Music predictions in the Music folder and 100 NonMusic predictions in the NonMusic folder: **199 of 200**. The miss is `music_41.mp3`. The cell does not print that fraction. The two Kaggle dataset ids are different; the notebook does not compare filenames across them.
+A later cell runs `test_model_on_folder("/kaggle/input/testdata/TestData")`. Each mp3 is loaded for 5 seconds at 22,050 Hz and classified once. A prediction is counted correct when `argmax` matches the folder name.
+
+| Folder | Files | Predicted as that folder | Miss |
+| --- | ---: | ---: | --- |
+| Music | 100 | 99 | `music_41.mp3` predicted NonMusic |
+| NonMusic | 100 | 100 | none |
+
+That is 199 of 200 lines in the saved log. The cell prints those lines and two counters. It does not print the fraction. Kaggle dataset id 7697087 is attached beside the training dataset 7691965. The notebook does not list training filenames against this folder, so a different dataset id is the only check that the clips were not copied from training. How the 200 files were chosen is not recorded.
 
 `MusicRecognition/Essentials/` has the clip tools that remain: `trim.py`, `cleaningFiles.py`, `corrupted_files.py`, and `download.py`. Their folder paths are blank. `MusicRecognition/Data/links.txt` is the source list used while building the set. The audio itself is not in this tree. `generate.ipynb` draws the loaded network and reads `../backend/model/music_classifier_model.h5`.
 
